@@ -1,19 +1,15 @@
 # dags/example_k8s_dag.py
-
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime
-import sys
 
-# Pfad zu deinen Scripts
-sys.path.append("/opt/airflow/scripts")
-
-from helper import hello
+# Jetzt geht der Import über das Package
+from scripts.helper import hello
 
 with DAG(
     dag_id="example_k8s_dag",
     start_date=datetime(2024, 1, 1),
-    schedule=None,  # manuell triggern
+    schedule=None,
     catchup=False,
     tags=["example"],
 ) as dag:
